@@ -1,4 +1,4 @@
-// Copyright (c) 2020-present,  INSPUR Co, Ltd.  All rights reserved.
+// Copyright (c) 2022-present, Shanghai Yunxi Technology Co, Ltd.  All rights reserved.
 
 #ifndef KWDBTS_SERVER_SRC_H_MA_CGO_H_
 #define KWDBTS_SERVER_SRC_H_MA_CGO_H_
@@ -84,13 +84,16 @@ extern "C" {
   // kwdbe_get_ae_ts_if_alive checks if Ae_Ts is running
   int kwdbe_get_ae_ts_if_alive();
 
+  // get_restful_logout_time get the timeout time.
+  int get_restful_logout_time();
+
   /**
    * @brief send workloadinfo to AE by workloadinfo_message_queue
    * @param[in]  value send info , malloc from share memory
    * @return  success 1, failed 0
    */
    int send_workloadinfo_to_ae(char *value);
-  
+
   /**
    * @brief get current device descriptor
    * @return deviceDescriptor
@@ -110,7 +113,7 @@ extern "C" {
   }meDeviceDescriptor;
 
   void cgo_get_device_descriptor(meDeviceDescriptor* pDevice, int kwdbType_, char* key_);
-  
+
   /**
    * @brief get error string
    * @param[in]  conn_id connnect id
