@@ -57,27 +57,27 @@ namespace protobuf {
 
 // Return a C++ string
 __attribute__((__format__(GOOGLE_PRINTF_FORMAT, 1, 2)))
-LIBPROTOBUF_EXPORT extern string StringPrintf(const char* format, ...);
+LIBPROTOBUF_EXPORT extern std::string StringPrintf(const char* format, ...);
 
-// Store result into a supplied string and return it
+// Store result into a supplied std::string and return it
 __attribute__((__format__(GOOGLE_PRINTF_FORMAT, 2, 3)))
-LIBPROTOBUF_EXPORT extern const string& SStringPrintf(string* dst, const char* format, ...);
+LIBPROTOBUF_EXPORT extern const std::string& SStringPrintf(std::string* dst, const char* format, ...);
 
-// Append result to a supplied string
+// Append result to a supplied std::string
 __attribute__((__format__(GOOGLE_PRINTF_FORMAT, 2, 3)))
-LIBPROTOBUF_EXPORT extern void StringAppendF(string* dst, const char* format, ...);
+LIBPROTOBUF_EXPORT extern void StringAppendF(std::string* dst, const char* format, ...);
 
 // Lower-level routine that takes a va_list and appends to a specified
-// string.  All other routines are just convenience wrappers around it.
-LIBPROTOBUF_EXPORT extern void StringAppendV(string* dst, const char* format, va_list ap);
+// std::string.  All other routines are just convenience wrappers around it.
+LIBPROTOBUF_EXPORT extern void StringAppendV(std::string* dst, const char* format, va_list ap);
 
 // The max arguments supported by StringPrintfVector
 LIBPROTOBUF_EXPORT extern const int kStringPrintfVectorMaxArgs;
 
-// You can use this version when all your arguments are strings, but
+// You can use this version when all your arguments are std::strings, but
 // you don't know how many arguments you'll have at compile time.
 // StringPrintfVector will LOG(FATAL) if v.size() > kStringPrintfVectorMaxArgs
-LIBPROTOBUF_EXPORT extern string StringPrintfVector(const char* format, const std::vector<string>& v);
+LIBPROTOBUF_EXPORT extern std::string StringPrintfVector(const char* format, const std::vector<std::string>& v);
 
 }  // namespace protobuf
 }  // namespace google
