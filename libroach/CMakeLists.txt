@@ -73,6 +73,15 @@ target_include_directories(roach
   PRIVATE protos
 )
 
+if(DEFINED PROTOBUF_DIR)
+  target_include_directories(roach
+    PRIVATE ${PROTOBUF_DIR}/include
+  )
+  target_link_directories(roach
+    PRIVATE ${PROTOBUF_DIR}/lib
+  )
+endif()
+
 set_target_properties(roach PROPERTIES
   CXX_STANDARD 11
   CXX_STANDARD_REQUIRED YES
