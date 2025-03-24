@@ -255,7 +255,7 @@ Status DBImpl::FlushMemTablesToOutputFiles(
     ColumnFamilyData* cfd = arg.cfd_;
     MutableCFOptions mutable_cf_options = *cfd->GetLatestMutableCFOptions();
     SuperVersionContext* superversion_context = arg.superversion_context_;
-    Status s = FlushMemTableToOutputFile(
+    Status s = this->FlushMemTableToOutputFile(
         cfd, mutable_cf_options, made_progress, job_context,
         superversion_context, snapshot_seqs, earliest_write_conflict_snapshot,
         snapshot_checker, log_buffer, thread_pri);

@@ -304,6 +304,37 @@ void MemTableList::PickMemtablesToFlush(const uint64_t* max_memtable_id,
   }
 }
 
+void MemTableList::PickOneMemtableToFlush(const uint64_t* max_memtable_id,
+                                        MemTable** ret) {
+  AutoThreadOperationStageUpdater stage_updater(
+      ThreadStatus::STAGE_PICK_MEMTABLES_TO_FLUSH);
+  const auto& memlist = current_->memlist_;
+  bool atomic_flush = false;
+  for (auto it = memlist.rbegin(); it != memlist.rend(); ++it) {
+    MemTable* m = *it;
+    if (!atomic_flush && m->atomic_flush_seqno_ != kMaxSequenceNumber) {
+      atomic_flush = true;
+    }
+    if (max_memtable_id != nullptr && m->GetID() > *max_memtable_id) {
+      break;
+    }
+    if (!m->flush_in_progress_) {
+      assert(!m->flush_completed_);
+      num_flush_not_started_--;
+      if (num_flush_not_started_ == 0) {
+        imm_flush_needed.store(false, std::memory_order_release);
+      }
+      m->flush_in_progress_ = true;  // flushing will start very soon
+      *ret = m;
+      return;
+    }
+  }
+  if (!atomic_flush || num_flush_not_started_ == 0) {
+    flush_requested_ = false;  // start-flush request is complete
+  }
+  *ret = nullptr;
+}
+
 void MemTableList::RollbackMemtableFlush(const autovector<MemTable*>& mems,
                                          uint64_t /*file_number*/) {
   AutoThreadOperationStageUpdater stage_updater(

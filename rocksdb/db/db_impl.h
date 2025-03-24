@@ -916,7 +916,7 @@ class DBImpl : public DB {
       bool read_only = false, bool error_if_log_file_exist = false,
       bool error_if_data_exists_in_logs = false);
 
- private:
+// private:
   friend class DB;
   friend class ErrorHandler;
   friend class InternalStats;
@@ -1007,7 +1007,7 @@ class DBImpl : public DB {
   // Flush the in-memory write buffer to storage.  Switches to a new
   // log-file/memtable and writes a new descriptor iff successful. Then
   // installs a new super version for the column family.
-  Status FlushMemTableToOutputFile(
+  virtual Status FlushMemTableToOutputFile(
       ColumnFamilyData* cfd, const MutableCFOptions& mutable_cf_options,
       bool* madeProgress, JobContext* job_context,
       SuperVersionContext* superversion_context,
