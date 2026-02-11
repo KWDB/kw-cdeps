@@ -71,16 +71,8 @@ target_include_directories(roach
   #PRIVATE ../protobuf/src
   PRIVATE ../rocksdb/include
   PRIVATE protos
+  PUBLIC ${PROTOBUF_INC}
 )
-
-if(DEFINED PROTOBUF_DIR)
-  target_include_directories(roach
-    PRIVATE ${PROTOBUF_DIR}/include
-  )
-  target_link_directories(roach
-    PRIVATE ${PROTOBUF_DIR}/lib
-  )
-endif()
 
 set_target_properties(roach PROPERTIES
   CXX_STANDARD 11
