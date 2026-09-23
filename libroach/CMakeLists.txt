@@ -55,10 +55,10 @@ add_library(roach
   protos/roachpb/errors.pb.cc
   protos/roachpb/internal.pb.cc
   protos/roachpb/metadata.pb.cc
-  protos/storage/enginepb/mvcc.pb.cc
-  protos/storage/enginepb/mvcc3.pb.cc
-  protos/storage/enginepb/file_registry.pb.cc
-  protos/storage/enginepb/rocksdb.pb.cc
+  protos/storage/relational/enginepb/mvcc.pb.cc
+  protos/storage/relational/enginepb/mvcc3.pb.cc
+  protos/storage/relational/enginepb/file_registry.pb.cc
+  protos/storage/relational/enginepb/rocksdb.pb.cc
   protos/util/hlc/legacy_timestamp.pb.cc
   protos/util/hlc/timestamp.pb.cc
   protos/util/log/log.pb.cc

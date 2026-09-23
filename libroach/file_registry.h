@@ -16,7 +16,7 @@
 #include <rocksdb/env.h>
 #include <string>
 #include <unordered_map>
-#include "protos/storage/enginepb/file_registry.pb.h"
+#include "protos/storage/relational/enginepb/file_registry.pb.h"
 
 namespace enginepb = kwbase::storage::enginepb;
 

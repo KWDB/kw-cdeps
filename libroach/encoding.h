@@ -14,7 +14,7 @@
 #include <rocksdb/slice.h>
 #include <stdint.h>
 #include "defines.h"
-#include "protos/storage/enginepb/mvcc.pb.h"
+#include "protos/storage/relational/enginepb/mvcc.pb.h"
 
 namespace kwbase {
 
